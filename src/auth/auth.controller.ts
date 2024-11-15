@@ -5,7 +5,7 @@ import { UserService } from 'src/user/user.service';
 import { AuthService } from './auth.service';
 import { LoginDTO } from './dto/login.dto';
 import { JwtAuthGuard } from './jwt-guard';
-import { Enable2FAType } from 'src/artists/types';
+import { Enable2FAType } from 'src/auth/types';
 import { ValidateTokenDTO } from 'src/auth/dto/validate-token.dto'
 import { UpdateResult } from 'typeorm';
 import { AuthGuard } from '@nestjs/passport';

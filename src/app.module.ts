@@ -18,6 +18,9 @@ import { AuthModule } from './auth/auth.module';
 import { JwtModule } from '@nestjs/jwt';
 import { authConstant } from './common/constants/authConstant';
 import { ArtistsModule } from './artists/artists.module';
+import { dataSourceOptions } from '../db/data-source';
+import { SeedModule } from './seed/seed.module';
+import { ConfigModule } from '@nestjs/config';
 
 
 const devPORT = { port : 3000 }
@@ -26,21 +29,11 @@ const prodPORT = { port: 4000 }
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: '127.0.0.1',
-      port: 3306,
-      username: 'root',
-      password: 'DB_Setup_2024!@',
-      database: 'spotify_clone',
-     entities: [
-      Song,
-      Artist,
-      User,
-      Playlist,
-     ],
-      synchronize: true,
+    ConfigModule.forRoot(
+      {envFilePath:['.development.env','.production.env'],
+        isGlobal:true
       }),
+    TypeOrmModule.forRoot(dataSourceOptions),
       SongsModule,
       PlayListModule,
       UserModule,
@@ -52,7 +45,8 @@ const prodPORT = { port: 4000 }
           expiresIn:'1d',
         }
       }),
-      ArtistsModule,
+      SeedModule,
+      ConfigModule
     ],
   controllers: [AppController],
   providers: [AppService,

@@ -4,7 +4,7 @@ import { UserService } from 'src/user/user.service';
 import { LoginDTO } from './dto/login.dto';
 import { JwtService } from '@nestjs/jwt';
 import { ArtistsService } from 'src/artists/artists.service';
-import { Enable2FAType, PayloadType } from 'src/artists/types';
+import { Enable2FAType, PayloadType } from 'src/auth/types';
 import * as bcrypt from 'bcryptjs'
 import * as speakeasy from 'speakeasy'
 import { UpdateResult } from 'typeorm';

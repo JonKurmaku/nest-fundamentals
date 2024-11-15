@@ -1,17 +1,16 @@
 import { Injectable, UnauthorizedException } from "@nestjs/common";
 import { PassportStrategy } from "@nestjs/passport";
-import { ExtractJwt, Strategy } from "passport-jwt";
+import { Strategy } from "passport-http-bearer";
 import { AuthService } from "../auth.service";
-import { authConstant } from "src/common/constants/authConstant";
 
 @Injectable()
 export class ApiKeyStrategy extends PassportStrategy(Strategy){
-    constructor(private authtService: AuthService){
+    constructor(private authService: AuthService){
         super()
     }   
 
     async validate(apiKey: string){
-        const user = await this.authtService.validateByApiKey(apiKey)
+        const user = await this.authService.validateByApiKey(apiKey)
         if(!user){
             throw new UnauthorizedException()
         }else{
@@ -19,3 +18,5 @@ export class ApiKeyStrategy extends PassportStrategy(Strategy){
         }
     }
 }
+
+

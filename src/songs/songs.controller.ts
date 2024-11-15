@@ -13,11 +13,11 @@ import { JwtAuthGuard } from 'src/auth/jwt-guard';
 export class SongsController {
 
 constructor(private songService: SongsService,
-            @Inject('CONNECTION') 
-            private connection:Connection,
+            // @Inject('CONNECTION') 
+            // private connection:Connection,
 ){
    // console.log(this.connection)
-}
+ }
 
 @Get()
 findAll(
